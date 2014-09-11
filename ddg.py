@@ -1,5 +1,6 @@
 import sys
-import requests
+import urllib2
+import json
 import ipdb as pdb
 
 
@@ -39,13 +40,14 @@ param = sys.argv[1]
 
 if param == "-s":
 
-    params = ''
+    #params = 'hola'
     
     for arg in sys.argv:
-        params+="+"+arg
+        params+=arg+"+"
 
-    pdb.set_trace()
+    #pdb.set_trace()
 
-    ddg = requests.get("http://api.duckduckgo.com/?q="+params+"&format=json&no_html=1")
-    get_results(ddg.json())
+    ddg = urllib2.urlopen("http://api.duckduckgo.com/?q=hola%2Bmundo&format=json&no_html=1")
+    #pdb.set_trace()
+    get_results(json.load(ddg))
 
